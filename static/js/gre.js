@@ -97,6 +97,7 @@ function define_form(obj, callback) {
         // add playlist header
         var header = $("<h3>"+q_data.name+"</h3>");
         p_area.children().remove();
+        p_area.text("");
         p_area.append(header);
 
         // add score div
@@ -165,13 +166,16 @@ function define_form(obj, callback) {
                 attempted++;
                 update_score();
 
-                console.log(chosen);
                 $(chosen).css("color", "red");
                 $(correct).css("color", "green");
-                
-                setTimeout(function() {
+
+                var btn = $("<button>next</button>");
+                btn.click(function() {
                     end_question();
-                }, 5000);
+                });
+
+                q_area.append(btn);
+                
             };
 
             var correct;

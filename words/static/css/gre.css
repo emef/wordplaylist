@@ -116,6 +116,7 @@ h3 { color: #aa4400; }
 #play-area {
     margin-top: 20px;
     float: left;
+    width: 600px;
 }
 
 #play-area > h3 {

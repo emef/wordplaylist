@@ -116,6 +116,7 @@ h3 { color: #aa4400; }
 #play-area {
     margin-top: 20px;
     float: left;
+    width: 600px;
 }
 
 #play-area > h3 {
@@ -147,4 +148,8 @@ h3 { color: #aa4400; }
 
 #word-area > .answer > input {
     margin-right: 15px;
+}
+
+#word-area  button {
+    margin-top: 15px;
 }
