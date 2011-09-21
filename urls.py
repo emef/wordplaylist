@@ -11,8 +11,8 @@ urlpatterns = patterns('',
     # url(r'^$', 'vocab.views.home', name='home'),
     # url(r'^vocab/', include('vocab.foo.urls')),
 
-    url(r'^$', 'vocab.words.views.home'),
-    url(r'^playlist/(?P<pl_id>[^/]+)/', 'vocab.words.views.get_playlist'),
+    url(r'^$', 'wordplaylist.words.views.home'),
+    url(r'^playlist/(?P<pl_id>[^/]+)/', 'wordplaylist.words.views.get_playlist'),
 
     # Uncomment the admin/doc line below to enable admin documentation:
     url(r'^admin/doc/', include('django.contrib.admindocs.urls')),

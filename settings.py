@@ -12,7 +12,7 @@ MANAGERS = ADMINS
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3', # Add 'postgresql_psycopg2', 'postgresql', 'mysql', 'sqlite3' or 'oracle'.
-        'NAME': '/usr/django/vocab/vocab.db',                      # Or path to database file if using sqlite3.
+        'NAME': '/usr/django/wordplaylist/vocab.db',                      # Or path to database file if using sqlite3.
         'USER': '',                      # Not used with sqlite3.
         'PASSWORD': '',                  # Not used with sqlite3.
         'HOST': '',                      # Set to empty string for localhost. Not used with sqlite3.
@@ -56,7 +56,7 @@ MEDIA_URL = ''
 # Don't put anything in this directory yourself; store your static files
 # in apps' "static/" subdirectories and in STATICFILES_DIRS.
 # Example: "/home/media/media.lawrence.com/static/"
-STATIC_ROOT = '/usr/django/vocab/static'
+STATIC_ROOT = '/usr/django/wordplaylist/static'
 
 # URL prefix for static files.
 # Example: "http://media.lawrence.com/static/"
@@ -72,7 +72,7 @@ STATICFILES_DIRS = (
     # Put strings here, like "/home/html/static" or "C:/www/django/static".
     # Always use forward slashes, even on Windows.
     # Don't forget to use absolute paths, not relative paths.
-    '/usr/django/vocab/words/static',
+    '/usr/django/wordplaylist/words/static',
     )
 
 # List of finder classes that know how to find static files in
@@ -101,13 +101,13 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.messages.middleware.MessageMiddleware',
 )
 
-ROOT_URLCONF = 'vocab.urls'
+ROOT_URLCONF = 'wordplaylist.urls'
 
 TEMPLATE_DIRS = (
     # Put strings here, like "/home/html/django_templates" or "C:/www/django/templates".
     # Always use forward slashes, even on Windows.
     # Don't forget to use absolute paths, not relative paths.
-    '/usr/django/vocab/template',
+    '/usr/django/wordplaylist/template',
 )
 
 INSTALLED_APPS = (
@@ -121,7 +121,7 @@ INSTALLED_APPS = (
     'django.contrib.admin',
     # Uncomment the next line to enable admin documentation:
     'django.contrib.admindocs',
-    'vocab.words',
+    'wordplaylist.words',
 )
 
 # A sample logging configuration. The only tangible logging

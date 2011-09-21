@@ -1,3 +1,10 @@
+Array.prototype.shuffle = function() {
+    var s = [];
+    while (this.length) s.push(this.splice(Math.random() * this.length, 1)[0]);
+    while (s.length) this.push(s.pop());
+    return this;
+}
+
 var page = {};
 
 var register_form = {
@@ -77,6 +84,117 @@ function define_form(obj, callback) {
         }
     };
 
+    var start_quiz = function(q_data) {
+        if(!q_data) {
+            alert("quiz not found, call matt");
+            return;
+        }
+
+        var score = 0;
+        var attempted = 0;
+        var p_area = $("#play-area");
+
+        // add playlist header
+        var header = $("<h3>"+q_data.name+"</h3>");
+        p_area.children().remove();
+        p_area.append(header);
+
+        // add score div
+        var score_board = $("<span />")
+        header.append(score_board);
+
+        // score fn
+        var total_score = q_data.words.length;
+        var update_score = function() {
+            score_board.text(" CORRECT: " + score + " / " + attempted);
+        }
+
+        // initial score
+        update_score();
+
+        // question area
+        var q_area = $("<div id='word-area' />");
+        p_area.append(q_area);
+
+        // get all definitions
+        var definitions = [];
+        for (var i=0; i<q_data.words.length; i++)
+            definitions.push(q_data.words[i].definition);
+
+        // keep track of what question we're on
+        var q_index = 0;
+        
+        var end_question = function() {
+            q_index++;
+            if (q_index < q_data.words.length) {
+                play_question(q_data.words[q_index]);
+            } else {
+                p_area.children().remove();
+                p_area.append("Quiz complete, you got " + score + " out of " + attempted);
+            }
+        }
+        
+        // play question
+        var play_question = function(w) {
+            q_area.children().remove();
+            
+            var prompt = $("<div class='word'>What is the definition of </div>");
+            var word = $("<span />")
+            word.text(w.word);
+            prompt.append(word);
+            prompt.append("?");
+            q_area.append(prompt);
+
+            var answers = [w.definition];
+            while(answers.length <= 4 && answers.length < definitions.length) {
+                var d = definitions[Math.floor(Math.random() * definitions.length)];
+                var ok = true;
+                for (var i=0; i<answers.length; i++) {
+                    if (d == answers[i])
+                        ok = false;
+                }
+                if (ok) answers.push(d);
+            }
+            
+            answers.shuffle();
+            
+            var on_answered = function(answer, chosen, correct) {
+                if (answer == w.definition) {
+                    score++;
+                }
+                attempted++;
+                update_score();
+
+                console.log(chosen);
+                $(chosen).css("color", "red");
+                $(correct).css("color", "green");
+                
+                setTimeout(function() {
+                    end_question();
+                }, 5000);
+            };
+
+            var correct;
+            for (var i=0; i<answers.length; i++) {
+                var d = $("<div class='answer'/>");
+                var r = $("<input type='radio' name='answer'/>");
+                r.change((function(a, d) { 
+                    return function() {
+                        on_answered(a, d, correct); 
+                    }
+                })(answers[i], d));
+                if (answers[i] == w.definition) correct = d;
+                d.append(r);
+                d.append(answers[i]);
+                q_area.append(d);
+            }
+            
+        }
+
+        play_question(q_data.words[0]);
+        
+    }
+
     modal_handlers.add("login", "Login", function(content) {
     });
 
@@ -92,6 +210,15 @@ function define_form(obj, callback) {
         
     });
 
+    exports.start_quiz = function(id) {
+        $.ajax({
+            url: "/playlist/" + id,
+            data: {},
+            dataType: "json",
+            success: start_quiz
+        });
+    };
+
     
     /* exported functions */
     exports.modal = function(mode) {
@@ -100,3 +227,5 @@ function define_form(obj, callback) {
     };
     
 })(page);
+
+$(document).ready(page.init);
