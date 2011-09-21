@@ -1,0 +1,66 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <script type="text/javascript" 
+            src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.1/jquery.min.js">
+    </script>
+    <script type="text/javascript" src="static/js/jquery.simplemodal.js"></script>
+    <script type="text/javascript" src="static/js/osx.js"></script>
+    <script type="text/javascript" src="static/js/gre.js"></script>
+    <link rel="stylesheet" href="static/css/gre.css" type="text/css" media="screen" />
+    <link rel="stylesheet" href="static/css/osx.css" type="text/css" media="screen" />
+  </head>
+  <body>
+
+    <div id="main-box">
+
+      <div id="header">
+        <img src="static/img/logo.png" class="" alt="" />
+        <div>
+          <a class="osx" href="/admin/words/playlist/add/">Add Playlist</a>
+        </div>
+      </div>
+
+      <div id="content-wrapper">
+        <div id="content">
+
+          <h3></h3>
+            
+          </div>
+          
+          <div class="box">
+            
+            <h3>PLAYLISTS</h3>
+
+            <div id="playlists" class="box-list">
+              {% for pl in playlists %}
+              <div><a href="javascript:page.start_quiz({{pl.id}})">{{pl.name}}</a></div>
+              {% endfor %}
+            </div>
+            
+          </div>
+
+          <div id="play-area">
+            <br /><br />
+            <div>Select a playlist to start the quiz.</div>
+          </div>
+          
+        </div>
+      </div>
+    </div>
+    
+    <!-- modal content -->
+    <div id="osx-modal-content">
+      <div id="osx-modal-title"></div>
+      <div class="close"><a href="#" class="simplemodal-close">x</a></div>
+      <div id="osx-modal-data">
+	<h2>Hello! I'm SimpleModal!</h2>
+	<p>SimpleModal is a lightweight jQuery Plugin which provides a powerful interface for modal dialog development. Think of it as a modal dialog framework.</p>
+	<p>SimpleModal gives you the flexibility to build whatever you can envision, while shielding you from related cross-browser issues inherent with UI development..</p>
+	<p>As you can see by this example, SimpleModal can be easily configured to behave like an OSX dialog. With a handful options, 2 custom callbacks and some styling, you have a visually appealing dialog that is ready to use!</p>
+	<p><button class="simplemodal-close">Close</button> <span>(or press ESC or click the overlay)</span></p>
+      </div>
+    </div>
+  </body>
+</html>
+

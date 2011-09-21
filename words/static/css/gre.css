@@ -1,0 +1,150 @@
+/* here */
+html, body { 
+    margin: 4px 0px; 
+    padding: 0px 0px; 
+    background: #ececec;
+    font-family: arial;
+}
+
+a { color: #d45500; text-decoration: none; font-size: 10pt; }
+a:hover { text-decoration: underline; }
+
+h3 { color: #aa4400; }
+
+
+.message {
+    height: 1em;
+    padding: 5px 0px 10px 0px;
+}
+
+.form button {
+    margin: 30px 0px 10px 0px;
+}
+
+#header { 
+    background: #ececec;
+    text-align: right;
+    height: 40px;
+    width: 1024px;
+}
+#header > img { 
+    float: left;
+    position: relative;
+    top: 5px;
+}
+#header > div {
+    position: relative;
+    bottom: -22px;
+}
+
+#main-box {
+    width: 1024px;
+    margin: 0px auto;
+}
+
+#content-wrapper {
+    width: 100%;
+    min-height: 600px;
+    border: 1px solid #bfbfbf;
+    float: left;
+    background: white;
+
+}
+
+#content {
+    float: left;
+    padding: 30px 40px;
+}
+
+#options h3 {
+    margin: 0px;
+    font-weight: normal;
+}
+
+#options a {
+    font-size: 10pt;
+}
+
+.box { 
+    float: left;
+    margin-right: 40px;
+    max-width: 300px;
+    height: 650px;
+}
+
+.box h3 {
+    margin-bottom: 0px;
+    font-weight: normal;
+    position: relative;
+    top: 4px;
+}
+
+.box img {
+    margin: 20px 20px;
+    cursor: pointer;
+}
+   
+
+.box-list {
+    border: 1px solid #d45500;
+    width: 250px;
+    max-height: 400px;
+    overflow: auto;
+}
+
+.box-list > div:first-child {
+    border: 0px none;
+}
+
+.box-list > div {
+    padding: 8px 15px;
+    border-top: 1px solid #d45500;
+    color: #666;
+    cursor: pointer;
+}
+
+.box-list > div > * {
+    color: #666;
+    font-size: 16px;
+}
+
+.box-list > div:hover {
+    color: #222;
+}
+
+
+#play-area {
+    margin-top: 20px;
+    float: left;
+}
+
+#play-area > h3 {
+    font-weight: normal;
+}
+
+#play-area > h3 > span {
+    padding: 0px 40px;
+}
+
+#play-area > .score {
+    float: right;
+    border: 1px solid #d45500;
+    padding: 2px 5px;
+}
+
+#word-area .word {
+    font-size: 24pt;
+    margin-bottom: 15px;
+}
+
+#word-area .word > span {
+    color: #d45500;
+}
+
+#word-area > .answer {
+    font-size: 16pt;
+}
+
+#word-area > .answer > input {
+    margin-right: 15px;
+}
