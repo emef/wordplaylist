@@ -148,3 +148,7 @@ h3 { color: #aa4400; }
 #word-area > .answer > input {
     margin-right: 15px;
 }
+
+#word-area  button {
+    margin-top: 15px;
+}
