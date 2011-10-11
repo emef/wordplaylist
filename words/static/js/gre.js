@@ -147,7 +147,7 @@ function define_form(obj, callback) {
             q_area.append(prompt);
 
             var answers = [w.definition];
-            while(answers.length <= 4 && answers.length < definitions.length) {
+            while(answers.length < 4 && answers.length < definitions.length) {
                 var d = definitions[Math.floor(Math.random() * definitions.length)];
                 var ok = true;
                 for (var i=0; i<answers.length; i++) {
