@@ -56,6 +56,13 @@ h3 { color: #aa4400; }
     padding: 30px 40px;
 }
 
+#email-list {
+    float: right;
+    clear: both;
+    padding: 5px 10px;
+    font-size: 0.7em;
+}
+
 #options h3 {
     margin: 0px;
     font-weight: normal;

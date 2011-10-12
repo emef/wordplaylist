@@ -1,3 +1,6 @@
+var console = console ? console
+                      : {log : function(msg) {} };
+
 Array.prototype.shuffle = function() {
     var s = [];
     while (this.length) s.push(this.splice(Math.random() * this.length, 1)[0]);
@@ -223,6 +226,33 @@ function define_form(obj, callback) {
         });
     };
 
+    exports.email_signup = function() {
+        var email = $("#email-signup").val();
+        var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+        if (re.test(email)) {
+            $("#email-list").children().remove();
+            $("#email-list").text("saving...");
+            $.ajax({
+                type: "get",
+                url: "/add-email/",
+                data: {email: email},
+                dataType: "json",
+                success: function(r) {
+                    setTimeout(function() {
+                        if (r) {
+                            $("#email-list").text("added to email list");
+                        } else {
+                            $("#email-list").text("error!");
+                        }
+                    }, 500);
+                }
+            });
+        }
+    }
+
+    exports.init = function() {
+        $("#email-btn").click(exports.email_signup);
+    }
     
     /* exported functions */
     exports.modal = function(mode) {
