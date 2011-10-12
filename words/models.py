@@ -17,7 +17,7 @@ class Playlist(models.Model):
     
     def get_words(self):
         import random
-        ws = list(self.words.all())
+        ws = list(self.word_set.all())
         random.shuffle(ws)
         return ws
 

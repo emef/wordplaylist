@@ -17,8 +17,5 @@ def add_email(request):
         return HttpResponse('null')
 
 def get_playlist(request, pl_id):
-    pl = Playlist.objects.filter(pk=pl_id)
-    if len(pl) > 0:
-        return HttpResponse(pl[0].json())
-    else:
-        return HttpResponse('null')
+    pl = get_object_or_404(Playlist, id=pl_id)
+    return HttpResponse(pl.json())
