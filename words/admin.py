@@ -8,10 +8,10 @@ class WordInline(admin.StackedInline):
 class PlaylistAdmin(admin.ModelAdmin):
     inlines = [WordInline]
         
-    def save_model(self, request, obj, form, **kwargs):
+    def save_formset(self, request, form, formset, **kwargs):
         #save data like normal
-        obj.save()
-        form.save_m2m()
+        obj = form.save()
+        words = formset.save()
 
         if not kwargs.get('change', True):
             from django.core.mail import EmailMessage
@@ -20,7 +20,7 @@ class PlaylistAdmin(admin.ModelAdmin):
             msg += '<div>Words included in %s:<ul>' % obj.name
             for word in obj.word_set.all():
                 msg += "<li>%s</li>" % word.word
-                msg += "</ul></div>"
+            msg += "</ul></div>"
             #send the email
             email = EmailMessage('New Playlist at wordplaylist.com',
                                  msg,
