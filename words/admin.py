@@ -14,14 +14,20 @@ class PlaylistAdmin(admin.ModelAdmin):
         form.save_m2m()
 
         if not kwargs.get('change', True):
-            from django.core.mail import send_mail
+            from django.core.mail import EmailMessage
             # new playlist, mass email subscribers
-            msg = 'New Playlist, %s, at wordplaylist.com\n\n' % obj.name
-            msg += 'Words included in %s:\n' % obj.name
+            msg = '<h2>New Playlist, %s, at wordplaylist.com</h2>' % obj.name
+            msg += '<div>Words included in %s:<ul>' % obj.name
             for word in obj.word_set.all():
-                msg += "%s\n" % word.word
+                msg += "<li>%s</li>" % word.word
+                msg += "</ul></div>"
             #send the email
-            send_mail('subject', msg, 'info@wordplaylist.com', [e.address for e in Email.objects.all()], fail_silently=False)
+            email = EmailMessage('New Playlist at wordplaylist.com',
+                                 msg,
+                                 'info@wordplaylist.com',
+                                 [e.address for e in Email.objects.all()])
+            email.content_subtype = 'html'
+            email.send()
             
 admin.site.register(Word)
 admin.site.register(Playlist, PlaylistAdmin)
