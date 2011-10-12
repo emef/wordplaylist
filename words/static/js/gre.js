@@ -121,9 +121,13 @@ function define_form(obj, callback) {
         p_area.append(q_area);
 
         // get all definitions
-        var definitions = [];
-        for (var i=0; i<q_data.words.length; i++)
-            definitions.push(q_data.words[i].definition);
+        var definitions = {};
+        for (var i=0; i<q_data.words.length; i++) {
+            var w = q_data.words[i];
+            var pos = w.word.match(/\([^\)]+\)/)[0];
+            if (!definitions[pos]) definitions[pos] = [];
+            definitions[pos].push(w.definition);
+        }
 
         // keep track of what question we're on
         var q_index = 0;
@@ -149,9 +153,11 @@ function define_form(obj, callback) {
             prompt.append("?");
             q_area.append(prompt);
 
+            var pos = w.word.match(/\([^\)]+\)/);
+            var potentials = definitions[pos];
             var answers = [w.definition];
-            while(answers.length < 4 && answers.length < definitions.length) {
-                var d = definitions[Math.floor(Math.random() * definitions.length)];
+            while(answers.length < 4 && answers.length < potentials.length) {
+                var d = potentials[Math.floor(Math.random() * potentials.length)];
                 var ok = true;
                 for (var i=0; i<answers.length; i++) {
                     if (d == answers[i])
