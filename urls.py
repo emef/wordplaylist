@@ -13,6 +13,7 @@ urlpatterns = patterns('',
 
     url(r'^$', 'wordplaylist.words.views.home'),
     url(r'^playlist/(?P<pl_id>[^/]+)/', 'wordplaylist.words.views.get_playlist'),
+    url(r'^add-email', 'wordplaylist.words.views.add_email'),
 
     # Uncomment the admin/doc line below to enable admin documentation:
     url(r'^admin/doc/', include('django.contrib.admindocs.urls')),
